@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'profile_todo/base.html' %}
 <body>
+{% block site_content %}
+    <h1>Todo details</h1>
+    <p>
 
+    </p>
+     <form >
+
+             <input class="form-control"  name="title" value='{{ todo.title }}'  disabled="" required="" >
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" cols="40" rows="10" disabled="" required=""
+                      id="id_description">{{ todo.description }}</textarea>
+
+
+            <a class="btn " href="{% url 'home' %}">Return</a>
+        </form>
+
+{% endblock %}
 </body>
 </html>

@@ -7,6 +7,7 @@
         <ul>
             {% for todo in todos %}
                 <li>{{ todo.title|upper }}
+                    <button class="delete"><a href="{% url 'details' pk=todo.pk %}">Details</a></button>
                     <button class="edit"><a href="{% url 'edit' pk=todo.pk %}">Edit</a></button>
                     <button class="delete"><a href="{% url 'delete' pk=todo.pk %}">Delete</a></button>
                 </li>
@@ -16,6 +17,7 @@
             {% endfor %}
         </ul>
     {% else %}
+
         <div class=class="form">
             <form method="POST">
                 {% csrf_token %}

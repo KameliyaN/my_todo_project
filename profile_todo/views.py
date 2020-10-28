@@ -37,11 +37,29 @@ def create(request):
 
     return render(request, 'profile_todo/create.html', context)
 
+
 def edit(request, pk):
-    return None
+    todo = Todo.objects.get(pk=pk)
+    form = TodoForm(instance=todo)
+    if request.method == 'POST':
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.prof = form.save()
+            form.prof.save()
+            return redirect('home')
+        return render(request, 'profile_todo/edit.html', {'form': form})
+    return render(request, 'profile_todo/edit.html', {'form': form})
+
 
 def delete(request, pk):
-    return None
+    todo = Todo.objects.get(pk=pk)
+    form = TodoForm(instance=todo)
+    if request.method == 'POST':
+        todo.delete()
+        return redirect('home')
+    return render(request, 'profile_todo/delete.html',{'todo':todo})
 
 
-
+def details(request, pk):
+    todo = Todo.objects.get(pk=pk)
+    return render(request, 'profile_todo/details.html', {'todo': todo})
