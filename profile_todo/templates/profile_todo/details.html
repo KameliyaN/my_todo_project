@@ -1,19 +1,21 @@
 {% extends 'profile_todo/base.html' %}
 <body>
 {% block site_content %}
-<h2>Do you really want to delete this Todo?</h2>
-       <form method="POST">
-            {% csrf_token %}
+    <h1>Todo details</h1>
+    <p>
+
+    </p>
+     <form >
+
              <input class="form-control"  name="title" value='{{ todo.title }}'  disabled="" required="" >
             <label for="description">Description</label>
             <textarea class="form-control" name="description" cols="40" rows="10" disabled="" required=""
                       id="id_description">{{ todo.description }}</textarea>
 
-            <input type="submit" class="btn btn-primary" value='Delete'>
-            <a class="btn " href="{% url 'home' %}">Return</a>
+
+            <a  class="btn btn-success" href="{% url 'home' %}">Return</a>
         </form>
 
 {% endblock %}
-
 </body>
 </html>
