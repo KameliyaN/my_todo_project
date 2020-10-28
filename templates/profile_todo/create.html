@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New TODO</title>
-</head>
+{% extends 'profile_todo/base.html' %}
+
+
 <body>
-<h1>Fill out the form!</h1>
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ todos.as_p }}
-        <input type="submit" class="btn btn-primary" value='Submit'>
-        <a class="btn btn-primary" href="{% url 'index' %}">Return</a>
-    </form>
-</div>
+{% block site_content %}
+
+    <div class="form">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+
+
+    </div>
+
+{% endblock %}
 </body>
 </html>

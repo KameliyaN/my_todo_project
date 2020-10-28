@@ -1,15 +1,32 @@
 {% extends 'profile_todo/base.html' %}
 
 
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Title</title>#}
-{#</head>#}
 <body>
 {% block site_content %}
-    <h1>I am home page</h1>
+    {% if todos %}
+        <ul>
+            {% for todo in todos %}
+                <li>{{ todo.title|upper }}
+                    <button class="edit"><a href="{% url 'edit' pk=todo.pk %}">Edit</a></button>
+                    <button class="delete"><a href="{% url 'delete' pk=todo.pk %}">Delete</a></button>
+                </li>
+                <p>
+
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class=class="form">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Submit form</button>
+
+            </form>
+
+
+        </div>
+    {% endif %}
 {% endblock %}
 </body>
 </html>
