@@ -13,7 +13,12 @@ def home(request):
         if form.is_valid():
             form.save()
             return render(request, 'profile_todo/home.html', {'todos': todos})
-        return render(request, 'profile_todo/home.html', {'todos': todos})
+
+        context = {
+            'todos': todos,
+            'form': ProfileForm(request.POST)
+        }
+        return render(request, 'profile_todo/home.html', context)
     form = ProfileForm()
     context = {
         'todos': todos,
@@ -33,6 +38,9 @@ def create(request):
             form.prof.save()
 
             return redirect('home')
+        context = {
+            'form': TodoForm(request.POST)
+        }
         return render(request, 'profile_todo/create.html', context)
 
     return render(request, 'profile_todo/create.html', context)
@@ -57,7 +65,7 @@ def delete(request, pk):
     if request.method == 'POST':
         todo.delete()
         return redirect('home')
-    return render(request, 'profile_todo/delete.html',{'todo':todo})
+    return render(request, 'profile_todo/delete.html', {'todo': todo})
 
 
 def details(request, pk):
