@@ -71,3 +71,7 @@ def delete(request, pk):
 def details(request, pk):
     todo = Todo.objects.get(pk=pk)
     return render(request, 'profile_todo/details.html', {'todo': todo})
+
+
+def mark_todo_done(request, pk):
+    return redirect('home')

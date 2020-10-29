@@ -6,7 +6,17 @@
     {% if todos %}
         <ul>
             {% for todo in todos %}
-                <li>{{ todo.title|upper }}
+                <li>{{ todo.title }}
+                    <form method="post" action="{% url 'mark todo done' pk=todo.pk %}">
+                            {% csrf_token %}
+
+                                {% if todo.is_done %}
+                                     <button   class="btn btn-light">Done</button>
+                                {% else %}
+                                     <button   class="btn btn-light">Not Done</button>
+                                {% endif %}
+
+                        </form>
                     <button   class="btn btn-light"><a href="{% url 'details' pk=todo.pk %}">Details</a></button>
                     <button   class="btn btn-light"><a href="{% url 'edit' pk=todo.pk %}">Edit</a></button>
                     <button   class="btn btn-light"><a href="{% url 'delete' pk=todo.pk %}">Delete</a></button>

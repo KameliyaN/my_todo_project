@@ -43,7 +43,7 @@ class ProfileForm(forms.ModelForm):
 class TodoForm(forms.ModelForm):
     title = forms.CharField(label='Title', widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'class': 'form-control'}))
-    is_done = forms.BooleanField(label='Done or not')
+    is_done = forms.BooleanField(label='Done or not',required=False)
 
     class Meta:
         model = Todo
